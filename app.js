@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const multer = require('multer');
+const compression = require('compression');
 
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
@@ -43,6 +44,8 @@ app.use((req, res, next) => {
 	}
 	next();
 });
+
+app.use(compression());
 
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
