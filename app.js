@@ -65,7 +65,7 @@ app.use((error, req, res, next) => {
 const connectToDB = async () => {
 	try {
 		await mongoose.connect(
-			'mongodb+srv://codelectron:1UxXVghEP94XnTKc@c0.dvnbp.mongodb.net/udemy?retryWrites=true&w=majority',
+			`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@c0.dvnbp.mongodb.net/udemy?retryWrites=true&w=majority`,
 			{
 				useUnifiedTopology: true,
 				useCreateIndex: true,
@@ -73,7 +73,7 @@ const connectToDB = async () => {
 			}
 		);
 
-		app.listen(8080);
+		app.listen(process.env.PORT || 8080);
 	} catch (err) {
 		console.log(err);
 	}
